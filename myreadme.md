@@ -12,4 +12,8 @@ npm install \
   graphql \
   graphql-tools
 
+http://localhost:3000/graphiql
+
+a ! after a property means it can not be null
+
 next
