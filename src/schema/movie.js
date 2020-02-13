@@ -64,7 +64,7 @@ const resolvers = {
     movies: (obj, args, context, info) => {
         return http
           .get(`https://api.themoviedb.org/3/discover/movie?api_key=${MOVIE_DB_API_KEY}&language=en-US`)
-          .then(response => response.results)
+          .then(response => response.results) // check the API tree
     },
   },
   Mutation: {
