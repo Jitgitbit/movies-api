@@ -17,6 +17,7 @@ const typeDefs = `
     production_companies: [Production_companies]
   }
 
+
   enum Currency {
     EUR
     GBP
@@ -32,6 +33,17 @@ const typeDefs = `
     rateMovie(id: ID!, rating: Int!): Int
   }
 `;
+
+let guestSessionObj
+async function getSessionId() {
+  guestSessionObj =
+    guestSessionObj ||
+    (await http.get(
+      `https://api.themoviedb.org/3/authentication/guest_session/new?api_key=${MOVIE_DB_API_KEY}&language=en-US`
+    ))
+  return guestSessionObj["guest_session_id"]
+}
+
 const resolvers = {
   Query: {
     movie: async (obj, args, context, info) => {
@@ -50,7 +62,9 @@ const resolvers = {
       }
     },
     movies: (obj, args, context, info) => {
-      // TODO: implement this
+        return http
+          .get(`https://api.themoviedb.org/3/discover/movie?api_key=${MOVIE_DB_API_KEY}&language=en-US`)
+          .then(response => response.results)
     },
   },
   Mutation: {
