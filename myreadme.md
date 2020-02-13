@@ -16,4 +16,6 @@ http://localhost:3000/graphiql
 
 a ! after a property means it can not be null
 
+for nodemon instead of node, npm run dev (instead of npm start)
+
 next
