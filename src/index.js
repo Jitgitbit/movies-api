@@ -5,6 +5,7 @@ import koaBody from 'koa-bodyparser';
 import { graphqlKoa, graphiqlKoa } from 'apollo-server-koa';
 // import schema from './schema/example';
 import schema from './schema/movie';
+import cors from "@koa/cors"
 
 const app = new koa();
 const router = new koaRouter();
@@ -21,6 +22,9 @@ router.get('/graphiql', graphiqlKoa({
   endpointURL: '/graphql',
   // passHeader: `'Authorization': 'Bearer <test token>'`,
 }));
+
+app.use(cors()) 
+
 app.use(router.routes());
 app.use(router.allowedMethods());
 app.listen(PORT, () => {

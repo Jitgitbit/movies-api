@@ -7,6 +7,7 @@ const typeDefs = `
   type Query {
     movies: [Movie]
     movie(id: ID, imdb_id: String): Movie
+    ratedMovies: [Movie]
   }
 
   type Movie {
@@ -43,6 +44,7 @@ async function getSessionId() {
     ))
   return guestSessionObj["guest_session_id"]
 }
+
 
 const resolvers = {
   Query: {
